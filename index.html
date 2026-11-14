@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <script>window.SHEET_URL="https://script.google.com/macros/s/AKfycbzSzn7SQhTDwoSw1DWSrNgbvhISBRWjCG1EQPG48uFE5bO1vBxpF3gMsm0gnZbke-6N2A/exec";</script>
-<script src="config.js?v=2"></script>
+<script src="config.js?v=3"></script>
 <title>유적 복원 연구소</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -371,13 +371,42 @@ body.slides header.top{padding-block:12vh 40px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 html{scroll-behavior:smooth}
 
-.submit{display:grid;gap:12px;border-color:var(--ochre)}
-.submit .who{display:flex;flex-wrap:wrap;gap:10px}
-.submit .who label{display:grid;gap:4px;font-size:14px;font-weight:600}
-.submit .who input{font:inherit;font-weight:400;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink);width:7em}
-.submit .who label:last-child input{width:10em}
+#entry{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:var(--bg);
+  background-image:radial-gradient(circle at 50% 38%,var(--ochre-soft) 0,transparent 60%)}
+#entry[hidden]{display:none!important}
+#entry .ecard{width:min(420px,100%);display:grid;gap:14px;background:var(--paper);border:1px solid var(--line);
+  border-top:4px solid var(--ochre);border-radius:8px;padding:32px 28px;box-shadow:0 12px 40px rgba(0,0,0,.08)}
+#entry .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--ochre)}
+#entry h1{margin:0;font-family:'Gowun Batang',serif;font-size:34px;color:var(--ink)}
+#entry .esub{margin:-6px 0 6px;color:var(--muted);font-size:14px}
+#entry label{display:grid;gap:6px;font-weight:600;font-size:14px;color:var(--ink)}
+#entry input{font:inherit;font-weight:400;font-size:18px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--ink)}
+#entry input:focus{outline:2px solid var(--accent);outline-offset:1px}
+#entry .btn{font-size:16px;padding:12px;margin-top:4px}
+#entry .efb{margin:0;min-height:1.2em;color:var(--bad);font-size:14px}
+#entry .ehint{margin:0;color:var(--muted);font-size:12px}
+body.locked{overflow:hidden}
+.slidebar .who{position:absolute;left:16px;font-size:12px;color:var(--muted)}
+.slidebar .who button{border:0;background:none;color:var(--accent);text-decoration:underline;cursor:pointer;font:inherit;padding:0 0 0 4px}
+.slidebar .btn.submitS{background:var(--ochre);border-color:var(--ochre);color:#fff}
+.slidebar .btn.submitS.done{background:var(--paper);color:var(--good);border-color:var(--good)}
+.slidebar .btn.submitS.fail{background:var(--paper);color:var(--bad);border-color:var(--bad)}
+@media (max-width:640px){.slidebar .who{display:none}.slidebar{gap:8px}.slidebar .btn{min-width:72px}}
 </style>
 
+
+<div id="entry" role="dialog" aria-modal="true" aria-labelledby="entryT">
+  <form class="ecard" id="entryForm" autocomplete="off">
+    <span class="eyebrow">중학교 3학년</span>
+    <h1 id="entryT">수학 수업</h1>
+    <p class="esub">유적 복원 연구소 · 사각형이 원에 내접할 조건</p>
+    <label>학번<input id="eId" type="text" inputmode="numeric" maxlength="6" placeholder="예) 30312"></label>
+    <label>이름<input id="eName" type="text" maxlength="12" placeholder="이름"></label>
+    <p class="efb" id="eFb" role="alert"></p>
+    <button class="btn primary" type="submit">입장하기</button>
+    <p class="ehint">학번은 학년·반·번호 순서로 씁니다. (3학년 3반 12번 → 30312)</p>
+  </form>
+</div>
 <div class="wrap">
 <header class="top">
   <span class="eyebrow">중3 수학 · Ⅴ. 원의 성질 · 동료장학 공개수업</span>
@@ -780,20 +809,6 @@ html{scroll-behavior:smooth}
     <p><a class="btn primary extlink" href="https://ask-smart-grow-bright.lovable.app/" target="_blank" rel="noopener">질문 생성기 열기 ↗</a></p>
   </div>
 
-
-  <div data-s="4" class="panel submit" id="submitBox">
-    <span class="tag">답안 제출</span>
-    <h3>오늘 쓴 답 제출하기</h3>
-    <p>반, 번호, 이름을 쓰고 ‘제출하기’를 누르면 오늘 이 페이지에 쓴 답이 선생님께 전달됩니다.<br>고쳐서 다시 제출해도 됩니다. 선생님은 마지막에 낸 답을 봅니다.</p>
-    <div class="who">
-      <label>반<input id="stClass" type="text" inputmode="numeric" autocomplete="off" placeholder="예) 3"></label>
-      <label>번호<input id="stNo" type="text" inputmode="numeric" autocomplete="off" placeholder="예) 12"></label>
-      <label>이름<input id="stName" type="text" autocomplete="off" placeholder="이름"></label>
-    </div>
-    <div class="tools"><button class="btn primary" id="submitBtn" type="button">제출하기</button></div>
-    <p class="fb" id="submitFb" role="status"></p>
-  </div>
-
   <div data-s="4" class="question">
     <span class="eyebrow">다음 시간 예고</span>
     <p>원 위의 한 점에서 그은 접선과 현이 이루는 각은 원주각과 어떤 관계가 있을까?</p>
@@ -932,6 +947,7 @@ html{scroll-behavior:smooth}
 <div class="slidebar" id="slidebar" hidden>
   <button class="btn" id="prevS" type="button">◀ 이전</button>
   <span id="sPos" class="mono"></span>
+  <button class="btn submitS" id="subS" type="button" hidden>제출</button>
   <button class="btn primary" id="nextS" type="button">다음 ▶</button>
 </div>
 
@@ -1275,7 +1291,7 @@ function render(scroll){
   header.classList.toggle("off",!all&&!sl.cover);
   secs.forEach(sec=>{const show=all||sl.sec===sec;sec.classList.toggle("off",!show);
     sec.querySelectorAll("[data-s]").forEach(e=>e.classList.toggle("off",!all&&+e.dataset.s!==sl.v))});
-  bar.hidden=all;document.body.classList.toggle("slides",!all);
+  bar.hidden=all;window.__onSlide&&window.__onSlide(all,sl);document.body.classList.toggle("slides",!all);
   document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===mode?"true":"false"));
   navLinks.forEach(a=>a.classList.toggle("cur",!all&&!sl.cover&&a.getAttribute("href")==="#"+(sl.sec.dataset.nav||sl.sec.id)));
   if(!all){
@@ -1309,10 +1325,46 @@ render(false);
 
 <script>
 (function(){
-const btn=document.getElementById("submitBtn");if(!btn)return;
-const fb=document.getElementById("submitFb");
-const F={c:document.getElementById("stClass"),n:document.getElementById("stNo"),m:document.getElementById("stName")};
-try{const s=JSON.parse(localStorage.getItem("cyclic-who")||"{}");F.c.value=s.c||"";F.n.value=s.n||"";F.m.value=s.m||""}catch(e){}
+/* ---------- 입장 화면 ---------- */
+const entry=document.getElementById("entry"),form=document.getElementById("entryForm");
+const eId=document.getElementById("eId"),eName=document.getElementById("eName"),eFb=document.getElementById("eFb");
+let who={id:"",name:""};
+try{const s=JSON.parse(localStorage.getItem("cyclic-student")||"{}");eId.value=s.id||"";eName.value=s.name||""}catch(e){}
+document.body.classList.add("locked");
+setTimeout(()=>(eId.value?eName:eId).focus(),50);
+form.addEventListener("submit",ev=>{
+  ev.preventDefault();
+  const id=eId.value.replace(/\s/g,""),name=eName.value.trim();
+  if(!/^\d{4,6}$/.test(id)){eFb.textContent="학번을 숫자로 써 주세요. (예: 30312)";eId.focus();return}
+  if(!name){eFb.textContent="이름을 써 주세요.";eName.focus();return}
+  who={id,name};
+  try{localStorage.setItem("cyclic-student",JSON.stringify(who))}catch(e){}
+  entry.hidden=true;document.body.classList.remove("locked");
+  const tag=document.getElementById("whoTag");if(tag)tag.firstChild.textContent=`${id} ${name}`;
+  const sb=document.querySelector('[data-mode="slides"]');           // 학생은 한 장씩 보기로 시작
+  if(sb&&sb.getAttribute("aria-pressed")!=="true")sb.click();
+});
+
+/* ---------- 슬라이드바: 학생 표시 + 제출 버튼 ---------- */
+const bar=document.getElementById("slidebar"),sub=document.getElementById("subS");
+const tag=document.createElement("span");tag.className="who";tag.id="whoTag";
+tag.innerHTML='<span></span><button type="button">다시 입장</button>';
+tag.querySelector("button").onclick=()=>{entry.hidden=false;document.body.classList.add("locked");eFb.textContent="";eName.focus()};
+bar.prepend(tag);
+
+const isField=el=>!(el.type==="checkbox"||el.type==="range"||el.type==="hidden"||el.closest("#entry"));
+let curSlide=null;
+window.__onSlide=(all,sl)=>{
+  curSlide=sl;
+  let has=false;
+  if(!all&&!sl.cover){
+    sl.sec.querySelectorAll(`[data-s="${sl.v}"]`).forEach(b=>{
+      if([...b.querySelectorAll("input,select,textarea")].some(isField)||b.querySelector("#recBody"))has=true});
+  }
+  sub.hidden=!has;sub.className="btn submitS";sub.textContent="제출";
+};
+
+/* ---------- 답 모으기 ---------- */
 const NAME={pr1:"예측: D가 원의 내부",pr2:"예측: D가 원 위",pr3:"예측: D가 원의 외부",gTrap:"추측: 사다리꼴",gPara:"추측: 평행사변형",gRhom:"추측: 마름모",
   todayA:"핵심 질문에 대한 나의 답",myQ:"나의 탐구 질문",myA:"탐구 질문에 대한 나의 답",
   mapTrap:"정리: 원에 내접하는 사다리꼴",mapPara:"정리: 원에 내접하는 평행사변형",mapRhom:"정리: 원에 내접하는 마름모"};
@@ -1324,15 +1376,15 @@ const LAB={"대각의 합":"지난 시간: 내접 사각형의 대각의 합","�
 const norm=s=>String(s).replace(/\s+/g,"").replace(/°/g,"");
 const ST={in:"원의 내부",on:"원 위",out:"원의 외부"};
 function collect(){
-  const d={"반":F.c.value.trim(),"번호":F.n.value.trim(),"이름":F.m.value.trim()};
-  const ans={};let ok=0,tot=0,filled=0;
+  const sl=curSlide;
+  const d={"학번":who.id,"이름":who.name};
+  const ans={};let ok=0,tot=0;
   document.querySelectorAll("section.stage input, section.stage select, section.stage textarea").forEach(el=>{
-    if(el.closest("#submitBox")||el.closest("#recBody")||el.type==="checkbox"||el.type==="range")return;
+    if(!isField(el)||el.closest("#recBody"))return;
     const sec=el.closest("section.stage");
     let key=(sec?sec.dataset.stage.replace(/[①②]/g,"")+" · ":"")+(NAME[el.id]||LAB[el.getAttribute("aria-label")]||el.getAttribute("aria-label")||el.id||"답");
     while(key in ans)key+="′";
     let v=el.tagName==="SELECT"?(el.value?el.options[el.selectedIndex].text:""):el.value.trim();
-    if(v)filled++;
     if(el.dataset.answer!==undefined){
       tot++;
       const right=el.tagName==="SELECT"?el.value===el.dataset.answer:(v!==""&&norm(v)===norm(el.dataset.answer));
@@ -1343,29 +1395,31 @@ function collect(){
   });
   const rows=window.__rows||[];
   const rec=rows.map((r,i)=>{
-    const f=(inp,ans)=>inp===undefined||inp===""?"빈칸":inp+(+inp===ans?"○":"×");
+    const f=(inp,a)=>inp===undefined||inp===""?"빈칸":inp+(+inp===a?"○":"×");
     return `${i+1}) ${ST[r.st]} A${r.iv.A}° B${r.iv.B}° C${r.iv.C}° D${r.iv.D}° | A+C=${f(r.inAC,r.ac)} B+D=${f(r.inBD,r.bd)}`;
   }).join("\n");
+  d["마지막 제출 화면"]=sl&&!sl.cover?`${sl.sec.dataset.stage} ${sl.v}`:"";
   d["정답 수(확인 문항)"]=`${ok} / ${tot}`;
   Object.assign(d,ans);
   d["2단계 · 관찰 기록표"]=rec||"(기록 없음)";
-  return {d,filled};
+  return d;
 }
-btn.onclick=async()=>{
+
+/* ---------- 제출 ---------- */
+let timer=null;
+sub.onclick=async()=>{
   const url=(window.SHEET_URL||"").trim();
-  if(!url){fb.className="fb no";fb.textContent="아직 제출 주소가 설정되지 않았어요. 선생님께 알려 주세요.";return}
-  if(!F.n.value.trim()||!F.m.value.trim()){fb.className="fb no";fb.textContent="번호와 이름을 먼저 써 주세요.";(F.n.value.trim()?F.m:F.n).focus();return}
-  try{localStorage.setItem("cyclic-who",JSON.stringify({c:F.c.value.trim(),n:F.n.value.trim(),m:F.m.value.trim()}))}catch(e){}
-  const {d,filled}=collect();
-  if(filled===0&&!confirm("아직 쓴 답이 하나도 없어요. 그래도 제출할까요?"))return;
-  btn.disabled=true;fb.className="fb";fb.textContent="제출하는 중…";
+  const show=(cls,t,keep)=>{sub.className="btn submitS"+(cls?" "+cls:"");sub.textContent=t;clearTimeout(timer);
+    if(!keep)timer=setTimeout(()=>{sub.className="btn submitS";sub.textContent="제출"},2500)};
+  if(!url){show("fail","주소 없음");alert("아직 제출 주소가 설정되지 않았어요. 선생님께 알려 주세요.");return}
+  if(!who.id){entry.hidden=false;document.body.classList.add("locked");return}
+  sub.disabled=true;show("","보내는 중…",true);
   try{
-    await fetch(url,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(d)});
-    const t=new Date();
-    fb.className="fb ok";fb.textContent=`제출했어요! (${t.getHours()}시 ${String(t.getMinutes()).padStart(2,"0")}분) 고친 뒤 다시 제출해도 됩니다.`;
+    await fetch(url,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(collect())});
+    show("done","제출 완료 ✓");
   }catch(e){
-    fb.className="fb no";fb.textContent="제출하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.";
-  }finally{btn.disabled=false}
+    show("fail","다시 제출");alert("제출하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.");
+  }finally{sub.disabled=false}
 };
 })();
 </script>
