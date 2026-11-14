@@ -392,6 +392,46 @@ body.locked{overflow:hidden}
 .slidebar .btn.submitS.done{background:var(--paper);color:var(--good);border-color:var(--good)}
 .slidebar .btn.submitS.fail{background:var(--paper);color:var(--bad);border-color:var(--bad)}
 @media (max-width:640px){.slidebar .who{display:none}.slidebar{gap:8px}.slidebar .btn{min-width:72px}}
+
+/* ---------- 교사 화면: 따라오기·잠금, 학생 답 모아 보기 ---------- */
+#entry .tonly{display:none}
+body.teacher #entry .tonly{display:grid}
+body.teacher #entry .sonly{display:none}
+.slidebar .tctl{position:absolute;right:16px;display:flex;gap:6px}
+.slidebar .tctl button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--paper);color:var(--muted);border-radius:999px;padding:6px 12px;cursor:pointer}
+.slidebar .tctl button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.slidebar .tctl button#tLock[aria-pressed="true"]{background:var(--ochre);border-color:var(--ochre)}
+.slidebar .fchip{position:absolute;right:16px;font-size:12px;color:var(--accent);font-weight:600}
+.slidebar .fchip.lock{color:var(--ochre)}
+body.followLock #prevS,body.followLock #nextS{opacity:.35;pointer-events:none}
+@media (max-width:900px){.slidebar .tctl{position:static}.slidebar .fchip{display:none}}
+
+#live{margin:22px 0 8px;border:1px solid var(--line);border-top:4px solid var(--accent);background:var(--paper);border-radius:8px;padding:18px 20px;display:grid;gap:18px}
+#live[hidden]{display:none!important}
+#live .lhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+#live .lhead h3{margin:0;font-size:17px}
+#live .lhead .muted{font-size:13px;color:var(--muted)}
+#live .q{display:grid;gap:10px}
+#live .q h4{margin:0;font-size:14px;color:var(--ink)}
+#live .q h4 small{font-weight:400;color:var(--muted);margin-left:6px}
+#live .bars{display:grid;gap:6px}
+#live .bar{display:grid;grid-template-columns:minmax(80px,180px) 1fr 48px;align-items:center;gap:10px;font-size:14px}
+#live .bar .lab{text-align:right;font-family:inherit;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#live .bar .trk{display:block;height:22px;background:var(--grid);border-radius:4px;overflow:hidden}
+#live .bar .fill{display:block;min-width:2px;height:100%;border-radius:4px;background:var(--muted);transition:width .4s}
+#live .bar.ok .fill{background:#1a56db}
+#live .bar.no .fill{background:#d93025}
+#live .bar.ok .lab{color:#1a56db;font-weight:600}
+#live .bar.no .lab{color:#d93025}
+#live .bar .num{font-variant-numeric:tabular-nums;color:var(--muted)}
+#live .cloud{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 16px;padding:16px 10px;min-height:90px;background:var(--bg);border-radius:8px;line-height:1.15}
+#live .cloud span{font-weight:700;transition:font-size .4s}
+#live .cloud .none{font-size:14px;font-weight:400;color:var(--muted)}
+#live details summary{cursor:pointer;font-size:13px;color:var(--accent)}
+#live .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px;margin-top:8px}
+#live .cards p{margin:0;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:14px;white-space:pre-wrap}
+#live .err{color:var(--bad);font-size:13px}
+#lBody{display:grid;gap:22px}
 </style>
 
 
@@ -1354,10 +1394,10 @@ window.__onSlide=(all,sl,i,n)=>{
 };
 
 /* ---------- 답 모으기 ---------- */
-const NAME={pr1:"예측: D가 원의 내부",pr2:"예측: D가 원 위",pr3:"예측: D가 원의 외부",gTrap:"추측: 사다리꼴",gPara:"추측: 평행사변형",gRhom:"추측: 마름모",
+const NAME=window.__NAME={pr1:"예측: D가 원의 내부",pr2:"예측: D가 원 위",pr3:"예측: D가 원의 외부",gTrap:"추측: 사다리꼴",gPara:"추측: 평행사변형",gRhom:"추측: 마름모",
   todayA:"핵심 질문에 대한 나의 답",myQ:"나의 탐구 질문",myA:"탐구 질문에 대한 나의 답",
   mapTrap:"정리: 원에 내접하는 사다리꼴",mapPara:"정리: 원에 내접하는 평행사변형",mapRhom:"정리: 원에 내접하는 마름모"};
-const LAB={"대각의 합":"지난 시간: 내접 사각형의 대각의 합","내부":"규칙: D가 원의 내부일 때 ∠B+∠D","원 위":"규칙: D가 원 위일 때 ∠B+∠D",
+const LAB=window.__LAB={"대각의 합":"지난 시간: 내접 사각형의 대각의 합","내부":"규칙: D가 원의 내부일 때 ∠B+∠D","원 위":"규칙: D가 원 위일 때 ∠B+∠D",
   "외부":"규칙: D가 원의 외부일 때 ∠B+∠D","네 각의 합":"규칙: 사각형의 네 각의 합","D1":"톨로스: D₁의 위치","D2":"톨로스: D₂의 위치",
   "D3":"톨로스: D₃의 위치","ADC":"스톤헨지 (1) ∠ADC","BCD":"스톤헨지 (2) ∠BCD","옮길 방향":"스톤헨지 (3) 옮길 방향",
   "평행선 사이 두 각의 합":"심화1 ① ∠A+∠B","같은 각":"심화1 ③ ∠B와 같은 각","결론 사다리꼴":"심화1 결론","각의 크기":"심화2 ③ ∠A=∠C",
@@ -1410,6 +1450,233 @@ sub.onclick=async()=>{
     show("fail","다시 제출");alert("제출하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.");
   }finally{sub.disabled=false}
 };
+})();
+</script>
+<script>
+(function(){
+/* ============================================================
+   교사 화면(주소 끝 ?teacher)과 학생 화면 따라오기·잠금
+   - 교사: 비밀번호로 입장 → 쪽을 넘기면 학생에게 알림, 현재 쪽의 학생 답을 아래에 모아 보기
+   - 학생: 3초마다 교사 상태를 확인해 따라가기(따라오기) 또는 고정(잠금)
+   ============================================================ */
+const URL_=()=>(window.SHEET_URL||"").trim();
+const TEACHER=new URLSearchParams(location.search).has("teacher");
+const entry=document.getElementById("entry"),form=document.getElementById("entryForm"),eFb=document.getElementById("eFb");
+const bar=document.getElementById("slidebar"),sub=document.getElementById("subS");
+const prevB=document.getElementById("prevS");
+const go=i=>window.__go&&window.__go(i);
+let page=0,total=0,slideAll=true,slideObj=null;
+
+/* 쪽이 바뀔 때마다 (원래 제출 버튼 처리 다음에) */
+const baseOnSlide=window.__onSlide;
+window.__onSlide=(all,sl,i,n)=>{
+  if(baseOnSlide)baseOnSlide(all,sl,i,n);
+  slideAll=all;slideObj=sl;page=i+1;total=n;
+  if(TEACHER){sub.hidden=true;teacherSlide();}
+  else studentSlide();
+};
+function slidesMode(){
+  const sb=document.querySelector('[data-mode="slides"]');
+  if(sb&&sb.getAttribute("aria-pressed")!=="true")sb.click();
+}
+
+/* ---------------- 학생 ---------------- */
+let st={page:0,follow:false,lock:false,ts:0},lastTs=null,chip=null,polling=false;
+function studentSlide(){
+  if(st.lock&&st.page&&page!==st.page){setTimeout(()=>{slidesMode();go(st.page-1)},0)}
+}
+function applyState(s){
+  const prev=st;st=s||st;
+  document.body.classList.toggle("followLock",!!st.lock);
+  if(!chip){chip=document.createElement("span");chip.className="fchip";bar.appendChild(chip)}
+  chip.className="fchip"+(st.lock?" lock":"");
+  chip.textContent=st.lock?"🔒 선생님 화면에 고정":st.follow?"선생님 화면을 따라가는 중":"";
+  if(!st.page)return;
+  if(st.lock){ if(slideAll||page!==st.page){slidesMode();go(st.page-1)} }
+  else if(st.follow&&st.ts!==lastTs&&lastTs!==null){ slidesMode();go(st.page-1) }
+  else if(st.follow&&lastTs===null&&!prev.ts){ slidesMode();go(st.page-1) }
+  lastTs=st.ts;
+}
+async function pollState(){
+  const u=URL_();if(!u)return;
+  try{
+    const r=await fetch(u+"?action=state&_="+Date.now(),{cache:"no-store"});
+    const j=await r.json();
+    if(j&&j.ok)applyState({page:+j.page||0,follow:!!j.follow,lock:!!j.lock,ts:j.ts||0});
+  }catch(e){}
+}
+function startStudent(){
+  if(polling)return;polling=true;
+  pollState();
+  setInterval(()=>{if(entry.hidden&&!document.hidden)pollState()},3000+Math.random()*600);
+}
+
+/* ---------------- 교사 ---------------- */
+let key="",follow=false,lock=false,liveTimer=null,live=null,showNames=false;
+function sendState(){
+  const u=URL_();if(!u||!key)return;
+  fetch(u,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:JSON.stringify({action:"state",key,page,follow:follow||lock,lock})}).catch(()=>{});
+}
+function teacherSlide(){
+  if(!key)return;
+  if(follow||lock)sendState();
+  refreshLive(true);
+}
+function setupTeacher(){
+  document.body.classList.add("teacher");
+  document.title="교사 화면 · 유적 복원 연구소";
+  // 입장 카드: 학번·이름 대신 비밀번호
+  form.querySelectorAll("label").forEach(l=>l.classList.add("sonly"));
+  form.querySelector(".ehint").classList.add("sonly");
+  form.querySelector("h1").textContent="수학 수업";
+  form.querySelector(".eyebrow").textContent="교사 화면";
+  const lab=document.createElement("label");lab.className="tonly";
+  lab.innerHTML='교사 비밀번호<input id="tKey" type="password" autocomplete="off" placeholder="Apps Script에 정한 비밀번호">';
+  form.querySelector(".efb").before(lab);
+  form.querySelector('button[type="submit"]').textContent="교사 화면 열기";
+  setTimeout(()=>lab.querySelector("input").focus(),80);
+  entry.addEventListener("submit",async ev=>{
+    ev.preventDefault();ev.stopImmediatePropagation();
+    const k=lab.querySelector("input").value.trim();
+    if(!k){eFb.textContent="비밀번호를 써 주세요.";return}
+    const u=URL_();if(!u){eFb.textContent="제출 주소(config.js)가 설정되지 않았습니다.";return}
+    eFb.textContent="확인하는 중…";
+    try{
+      const r=await fetch(u+"?action=check&key="+encodeURIComponent(k)+"&_="+Date.now(),{cache:"no-store"});
+      const j=await r.json();
+      if(!j.ok){eFb.textContent=j.error==="key"?"비밀번호가 맞지 않습니다.":"Apps Script를 새 버전으로 배포했는지 확인해 주세요.";return}
+    }catch(e){eFb.textContent="Apps Script에 연결하지 못했습니다. 새 버전으로 배포했는지 확인해 주세요.";return}
+    key=k;eFb.textContent="";
+    entry.hidden=true;document.body.classList.remove("locked");
+    const tag=document.getElementById("whoTag");
+    if(tag){tag.firstChild.textContent="교사 화면";tag.querySelector("button").hidden=true}
+    // 따라오기·잠금 버튼
+    const ctl=document.createElement("span");ctl.className="tctl";
+    ctl.innerHTML='<button type="button" id="tFol" aria-pressed="false" title="교사가 쪽을 넘기면 학생 화면도 그 쪽으로 이동합니다. 학생도 자유롭게 넘길 수 있습니다.">따라오기</button>'+
+                  '<button type="button" id="tLock" aria-pressed="false" title="학생 화면을 교사가 보는 쪽에 고정합니다.">🔒 잠금</button>';
+    bar.appendChild(ctl);
+    const fb=ctl.querySelector("#tFol"),lb=ctl.querySelector("#tLock");
+    const paint=()=>{fb.setAttribute("aria-pressed",String(follow||lock));lb.setAttribute("aria-pressed",String(lock))};
+    fb.onclick=()=>{if(lock){lock=false;follow=false}else follow=!follow;paint();sendState()};
+    lb.onclick=()=>{lock=!lock;if(lock)follow=true;paint();sendState()};
+    // 처음엔 둘 다 끈 상태로 알림 (지난 수업의 잠금이 남지 않게)
+    follow=false;lock=false;paint();sendState();
+    slidesMode();go(0);window.scrollTo(0,0);
+    buildLive();refreshLive(true);
+    liveTimer=setInterval(()=>{if(!document.hidden)refreshLive(false)},5000);
+  },true);
+}
+
+/* ---------- 학생 답 모아 보기 ---------- */
+const SEL="section.stage input, section.stage select, section.stage textarea, #recBody";
+const isField=el=>!(el.type==="checkbox"||el.type==="range"||el.type==="hidden"||el.closest("#entry"));
+const ORDER=[];
+(function(){
+  const seen=new Set(),NAME=window.__NAME||{},LAB=window.__LAB||{};
+  document.querySelectorAll(SEL).forEach(el=>{
+    if(el.id==="recBody"){ORDER.push({el,key:"2단계 · 관찰 기록표",kind:"rec"});return}
+    if(!isField(el)||el.closest("#recBody"))return;
+    const sec=el.closest("section.stage");
+    let k=(sec?sec.dataset.stage.replace(/[①②]/g,"")+" · ":"")+(NAME[el.id]||LAB[el.getAttribute("aria-label")]||el.getAttribute("aria-label")||el.id||"답");
+    while(seen.has(k))k+="′";seen.add(k);
+    const kind=el.tagName==="SELECT"?"choice":el.tagName==="TEXTAREA"?"text":el.dataset.answer!==undefined?"value":"text";
+    ORDER.push({el,key:k,kind});
+  });
+})();
+function buildLive(){
+  live=document.createElement("section");live.id="live";live.hidden=true;
+  live.innerHTML='<div class="lhead"><h3>학생 답 모아 보기</h3><span class="muted" id="lMeta"></span></div><div id="lBody"></div>';
+  document.querySelector(".wrap").appendChild(live);
+}
+function fieldsHere(){
+  if(slideAll||!slideObj||slideObj.cover)return [];
+  const blocks=[...slideObj.sec.querySelectorAll(`[data-s="${slideObj.v}"]`)];
+  return ORDER.filter(o=>blocks.some(b=>b.contains(o.el)));
+}
+const strip=v=>String(v).replace(/\s*\((○|×)\)\s*$/,"").trim();
+const norm=s=>String(s).replace(/\s+/g,"").replace(/°/g,"");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let liveKeyNow="",reqId=0;
+async function refreshLive(changed){
+  if(!live||!key)return;
+  const fs=fieldsHere();
+  if(!fs.length){live.hidden=true;liveKeyNow="";return}
+  const sig=fs.map(f=>f.key).join("|");
+  if(changed&&sig!==liveKeyNow){live.hidden=false;document.getElementById("lBody").innerHTML='<p class="muted">학생 답을 불러오는 중…</p>'}
+  liveKeyNow=sig;
+  const my=++reqId;
+  try{
+    const r=await fetch(URL_()+"?action=answers&key="+encodeURIComponent(key)+"&cols="+encodeURIComponent(JSON.stringify(fs.map(f=>f.key)))+"&_="+Date.now(),{cache:"no-store"});
+    const j=await r.json();
+    if(my!==reqId)return;
+    if(!j.ok)throw new Error(j.error||"error");
+    live.hidden=false;
+    const t=new Date();
+    document.getElementById("lMeta").textContent=`제출한 학생 ${j.n}명 · 이름은 숨김 · ${t.getHours()}:${String(t.getMinutes()).padStart(2,"0")}:${String(t.getSeconds()).padStart(2,"0")} 갱신 (5초마다)`;
+    document.getElementById("lBody").innerHTML=fs.map(f=>render(f,(j.data&&j.data[f.key])||[])).join("");
+  }catch(e){
+    if(my!==reqId)return;
+    live.hidden=false;
+    document.getElementById("lBody").innerHTML='<p class="err">학생 답을 불러오지 못했습니다. 잠시 뒤 다시 시도합니다.</p>';
+  }
+}
+function render(f,vals){
+  const title=f.key.split(" · ").slice(1).join(" · ")||f.key;
+  const head=`<h4>${esc(title)}<small>응답 ${vals.length}명</small></h4>`;
+  if(f.kind==="choice"){
+    const opts=[...f.el.options].filter(o=>o.value!=="");
+    const cnt=opts.map(o=>vals.filter(v=>strip(v)===o.text.trim()).length);
+    const max=Math.max(1,...cnt);
+    return `<div class="q">${head}<div class="bars">`+opts.map((o,i)=>{
+      const cls=f.el.dataset.answer===undefined?"":(o.value===f.el.dataset.answer?" ok":" no");
+      return `<div class="bar${cls}"><span class="lab">${esc(o.text)}</span><span class="trk"><span class="fill" style="width:${cnt[i]/max*100}%"></span></span><span class="num">${cnt[i]}명</span></div>`;
+    }).join("")+`</div></div>`;
+  }
+  if(f.kind==="value"){
+    const m=new Map();vals.forEach(v=>{const s=strip(v);if(s)m.set(s,(m.get(s)||0)+1)});
+    const arr=[...m].sort((a,b)=>b[1]-a[1]).slice(0,8),max=Math.max(1,...arr.map(a=>a[1]));
+    if(!arr.length)return `<div class="q">${head}<p class="muted">아직 답이 없습니다.</p></div>`;
+    return `<div class="q">${head}<div class="bars">`+arr.map(([v,c])=>{
+      const ok=norm(v)===norm(f.el.dataset.answer);
+      return `<div class="bar ${ok?"ok":"no"}"><span class="lab">${esc(v)}</span><span class="trk"><span class="fill" style="width:${c/max*100}%"></span></span><span class="num">${c}명</span></div>`;
+    }).join("")+`</div></div>`;
+  }
+  if(f.kind==="rec"){
+    let ok=0,no=0,blank=0,who=0;
+    vals.forEach(v=>{if(!v||v==="(기록 없음)")return;who++;ok+=(v.match(/\d+○/g)||[]).length;no+=(v.match(/\d+×/g)||[]).length;blank+=(v.match(/빈칸/g)||[]).length});
+    const rows=[["맞게 계산",ok,"ok"],["틀리게 계산",no,"no"],["빈칸",blank,""]],max=Math.max(1,ok,no,blank);
+    return `<div class="q"><h4>관찰 기록표 (대각의 합 계산)<small>기록한 학생 ${who}명 · 칸 수 기준</small></h4><div class="bars">`+rows.map(([l,c,cls])=>
+      `<div class="bar ${cls}"><span class="lab">${l}</span><span class="trk"><span class="fill" style="width:${c/max*100}%"></span></span><span class="num">${c}칸</span></div>`).join("")+`</div></div>`;
+  }
+  // 서술형: 워드클라우드 + 답 펼쳐 보기
+  const texts=vals.map(strip).filter(Boolean);
+  return `<div class="q">${head}${cloud(texts)}`+(texts.length?`<details><summary>학생 답 펼쳐 보기 (${texts.length}개, 이름 없이)</summary><div class="cards">${shuffle(texts).map(t=>`<p>${esc(t)}</p>`).join("")}</div></details>`:"")+`</div>`;
+}
+const STOP=new Set("보는 보면 않는다 않다 않 아니 아니다 아니면 아닌 때문 경우 이것 그것 우리 나는 내가 그리고 그래서 하지만 그러면 그러나 또는 이다 있다 없다 한다 된다 하다 되다 것 수 때 더 또 및 등 이 그 저 좀 잘 왜 어떻게 무엇 만약 같은 정말 항상 모든 어떤 가 은 는 을 를 의 에 도 로 와 과 만 면 다 있을까 될까 할까 일까 까 요".split(" "));
+const JOSA=/(하지않는다|하지않다|하지|않는다|않다|이라면|한다면|된다면|이므로|하므로|으로|에서|에게|까지|부터|보다|처럼|이라|이면|하면|라면|이고|이며|하고|한다|된다|하다|이다|일까|할까|될까|을까|인가|할|은|는|이|가|을|를|의|에|도|로|와|과|만|면|다)$/;
+const KEEP1=new Set(["원","각","합","점","변"]);
+function tokens(t){
+  return t.split(/[^0-9A-Za-z가-힣°∠+=<>]+/).map(w=>{let x=w;for(let k=0;k<2&&x.length>1;k++){const y=x.replace(JOSA,"");if(y===x||!y)break;x=y}return x}).filter(w=>w&&!STOP.has(w)&&!/^\d$/.test(w)&&(w.length>1||KEEP1.has(w)));
+}
+function hash(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return h}
+function shuffle(a){return a.map(x=>[hash(x),x]).sort((p,q)=>p[0]-q[0]).map(p=>p[1])}
+const COLORS=["#1B5A76","#A5661B","#2D7A4D","#6B4FA0","#1C262A"];
+function cloud(texts){
+  const m=new Map();texts.forEach(t=>new Set(tokens(t)).forEach(w=>m.set(w,(m.get(w)||0)+1)));
+  const arr=[...m].sort((a,b)=>b[1]-a[1]).slice(0,40);
+  if(!arr.length)return '<div class="cloud"><span class="none">아직 답이 없습니다.</span></div>';
+  const max=arr[0][1];
+  const items=arr.map(([w,c])=>({w,c,size:Math.round(15+33*Math.pow(c/max,0.75)),col:COLORS[Math.abs(hash(w))%COLORS.length]}));
+  items.sort((a,b)=>hash(a.w)-hash(b.w));
+  return '<div class="cloud">'+items.map(i=>`<span style="font-size:${i.size}px;color:${i.col}" title="${i.c}명">${esc(i.w)}</span>`).join("")+'</div>';
+}
+
+/* ---------- 시작 ---------- */
+if(TEACHER)setupTeacher();
+else{
+  entry.addEventListener("submit",()=>setTimeout(()=>{if(entry.hidden)startStudent()},0));
+}
 })();
 </script>
 </html>
