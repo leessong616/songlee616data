@@ -1300,7 +1300,7 @@ function render(scroll){
   }
   try{localStorage.setItem("cyc-mode",mode);localStorage.setItem("cyc-cur",cur)}catch(e){}
 }
-function go(i){cur=Math.max(0,Math.min(slides.length-1,i));render(true)}
+function go(i){cur=Math.max(0,Math.min(slides.length-1,i));render(true)}window.__go=go;
 prevB.onclick=()=>go(cur-1);nextB.onclick=()=>go(cur+1);
 document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{
   if(b.dataset.mode===mode)return;
@@ -1361,6 +1361,7 @@ form.addEventListener("submit",ev=>{
   const tag=document.getElementById("whoTag");if(tag)tag.firstChild.textContent=`${id} ${name}`;
   const sb=document.querySelector('[data-mode="slides"]');           // 학생은 한 장씩 보기로 시작
   if(sb&&sb.getAttribute("aria-pressed")!=="true")sb.click();
+  if(window.__go)window.__go(0);window.scrollTo(0,0);
 });
 
 /* ---------- 슬라이드바: 학생 표시 + 제출 버튼 ---------- */
@@ -1397,7 +1398,13 @@ function collect(){
   const sl=curSlide;
   const d={"학번":who.id,"이름":who.name};
   const ans={};let ok=0,tot=0;
-  document.querySelectorAll("section.stage input, section.stage select, section.stage textarea").forEach(el=>{
+  const rows=window.__rows||[];
+  const rec=rows.map((r,i)=>{
+    const f=(inp,a)=>inp===undefined||inp===""?"빈칸":inp+(+inp===a?"○":"×");
+    return `${i+1}) ${ST[r.st]} A${r.iv.A}° B${r.iv.B}° C${r.iv.C}° D${r.iv.D}° | A+C=${f(r.inAC,r.ac)} B+D=${f(r.inBD,r.bd)}`;
+  }).join("\n");
+  document.querySelectorAll("section.stage input, section.stage select, section.stage textarea, #recBody").forEach(el=>{
+    if(el.id==="recBody"){ans["2단계 · 관찰 기록표"]=rec||"(기록 없음)";return}
     if(!isField(el)||el.closest("#recBody"))return;
     const sec=el.closest("section.stage");
     let key=(sec?sec.dataset.stage.replace(/[①②]/g,"")+" · ":"")+(NAME[el.id]||LAB[el.getAttribute("aria-label")]||el.getAttribute("aria-label")||el.id||"답");
@@ -1411,15 +1418,9 @@ function collect(){
     }
     ans[key]=v;
   });
-  const rows=window.__rows||[];
-  const rec=rows.map((r,i)=>{
-    const f=(inp,a)=>inp===undefined||inp===""?"빈칸":inp+(+inp===a?"○":"×");
-    return `${i+1}) ${ST[r.st]} A${r.iv.A}° B${r.iv.B}° C${r.iv.C}° D${r.iv.D}° | A+C=${f(r.inAC,r.ac)} B+D=${f(r.inBD,r.bd)}`;
-  }).join("\n");
   d["마지막 제출 화면"]=sl&&!sl.cover?`${sl.sec.dataset.stage} ${sl.v}`:"";
   d["정답 수(확인 문항)"]=`${ok} / ${tot}`;
   Object.assign(d,ans);
-  d["2단계 · 관찰 기록표"]=rec||"(기록 없음)";
   return d;
 }
 
