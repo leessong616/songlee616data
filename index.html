@@ -445,7 +445,7 @@ body.locked{overflow:hidden}
           <figcaption>같은 색끼리 서로 마주 보는 두 각</figcaption></figure>
         <div class="prevtext">
       <p>원에 내접하는 사각형 ABCD에서 한 쌍의 대각의 크기의 합은?
-        <select data-answer="180" aria-label="대각의 합"><option value="">선택</option><option>90</option><option>180</option><option>360</option></select>°
+        <select autocomplete="off" data-answer="180" aria-label="대각의 합"><option value="">선택</option><option>90</option><option>180</option><option>360</option></select>°
         <button class="btn" data-check>확인</button></p>
       <p class="fb" aria-live="polite"></p>
         </div>
@@ -564,9 +564,9 @@ body.locked{overflow:hidden}
       <h3>먼저 예측하기</h3>
       <p>D를 움직이기 전에 예측해 보세요.<br>∠B + ∠D는 180°와 비교해 어떻게 될까요?</p>
       <div class="rules">
-        <div class="rule">D가 원의 <b>내부</b>에 있으면 ∠B + ∠D <select id="pr1" aria-label="내부 예측"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
-        <div class="rule">D가 원 <b>위</b>에 있으면 ∠B + ∠D <select id="pr2" aria-label="원 위 예측"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
-        <div class="rule">D가 원의 <b>외부</b>에 있으면 ∠B + ∠D <select id="pr3" aria-label="외부 예측"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
+        <div class="rule">D가 원의 <b>내부</b>에 있으면 ∠B + ∠D <select autocomplete="off" id="pr1" aria-label="내부 예측"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
+        <div class="rule">D가 원 <b>위</b>에 있으면 ∠B + ∠D <select autocomplete="off" id="pr2" aria-label="원 위 예측"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
+        <div class="rule">D가 원의 <b>외부</b>에 있으면 ∠B + ∠D <select autocomplete="off" id="pr3" aria-label="외부 예측"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
       </div>
       <p class="muted" style="font-size:14px">예측할 때는 조작판의 ‘각도 가리기’를 켜 두면 좋습니다.</p>
     </div></div>
@@ -579,7 +579,7 @@ body.locked{overflow:hidden}
         <button class="btn" id="goIn">원 안으로</button>
         <button class="btn" id="goOn">원 위로</button>
         <button class="btn" id="goOut">원 밖으로</button>
-        <label class="chk"><input type="checkbox" id="hideVals"> 각도 가리기</label>
+        <label class="chk"><input autocomplete="off" type="checkbox" id="hideVals"> 각도 가리기</label>
       </div>
     </div>
     <div class="readout" id="readout">
@@ -614,10 +614,10 @@ body.locked{overflow:hidden}
       <h3>규칙 찾기</h3>
       <p>기록표를 보고 빈칸을 채워 보세요.</p>
       <div class="rules">
-        <div class="rule">D가 원의 내부 → ∠B + ∠D <select data-answer="&gt;" aria-label="내부"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
-        <div class="rule">D가 원 위 → ∠B + ∠D <select data-answer="=" aria-label="원 위"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
-        <div class="rule">D가 원의 외부 → ∠B + ∠D <select data-answer="&lt;" aria-label="외부"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
-        <div class="rule">∠A + ∠C는 ∠B + ∠D와 더하면 항상 <select data-answer="360" aria-label="네 각의 합"><option value="">?</option><option>180</option><option>360</option><option>540</option></select>°이므로, 한 쌍만 확인해도 된다.</div>
+        <div class="rule">D가 원의 내부 → ∠B + ∠D <select autocomplete="off" data-answer="&gt;" aria-label="내부"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
+        <div class="rule">D가 원 위 → ∠B + ∠D <select autocomplete="off" data-answer="=" aria-label="원 위"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
+        <div class="rule">D가 원의 외부 → ∠B + ∠D <select autocomplete="off" data-answer="&lt;" aria-label="외부"><option value="">?</option><option>&gt;</option><option>=</option><option>&lt;</option></select> 180°</div>
+        <div class="rule">∠A + ∠C는 ∠B + ∠D와 더하면 항상 <select autocomplete="off" data-answer="360" aria-label="네 각의 합"><option value="">?</option><option>180</option><option>360</option><option>540</option></select>°이므로, 한 쌍만 확인해도 된다.</div>
       </div>
       <div class="tools"><button class="btn" data-check>정답 확인</button><button class="btn" id="cmpPred">내 예측과 비교</button></div>
       <p class="fb" aria-live="polite"></p>
@@ -693,9 +693,9 @@ body.locked{overflow:hidden}
         <p class="mono">∠AD₁C = 76° &nbsp; ∠AD₂C = 83° &nbsp; ∠AD₃C = 70°</p>
         <p>각 받침돌은 원래 기둥이 서 있던 원의 어디에 있을까요?</p>
         <div class="ans-grid">
-          <div class="rule">D₁ <select data-answer="on" aria-label="D1"><option value="">선택</option><option value="in">원의 내부</option><option value="on">원 위</option><option value="out">원의 외부</option></select></div>
-          <div class="rule">D₂ <select data-answer="in" aria-label="D2"><option value="">선택</option><option value="in">원의 내부</option><option value="on">원 위</option><option value="out">원의 외부</option></select></div>
-          <div class="rule">D₃ <select data-answer="out" aria-label="D3"><option value="">선택</option><option value="in">원의 내부</option><option value="on">원 위</option><option value="out">원의 외부</option></select></div>
+          <div class="rule">D₁ <select autocomplete="off" data-answer="on" aria-label="D1"><option value="">선택</option><option value="in">원의 내부</option><option value="on">원 위</option><option value="out">원의 외부</option></select></div>
+          <div class="rule">D₂ <select autocomplete="off" data-answer="in" aria-label="D2"><option value="">선택</option><option value="in">원의 내부</option><option value="on">원 위</option><option value="out">원의 외부</option></select></div>
+          <div class="rule">D₃ <select autocomplete="off" data-answer="out" aria-label="D3"><option value="">선택</option><option value="in">원의 내부</option><option value="on">원 위</option><option value="out">원의 외부</option></select></div>
           <div class="tools"><button class="btn" data-check>확인</button></div>
           <p class="fb" aria-live="polite"></p>
         </div>
@@ -715,10 +715,10 @@ body.locked{overflow:hidden}
         <h3>쓰러진 돌을 다시 세워라</h3>
         <p>스톤헨지 바깥 원의 돌 A, B, C는 제자리에 있습니다.<br>쓰러진 돌 D를 원래 원 위에 다시 세우려고 합니다.<br>사각형 ABCD에서 ∠ABC = 112°, ∠BAD = 96°입니다.</p>
         <div class="ans-grid">
-          <div class="rule">(1) D가 원 위에 서려면 ∠ADC = <input type="number" data-answer="68" aria-label="ADC"> °</div>
-          <div class="rule">(2) 이때 ∠BCD = <input type="number" data-answer="84" aria-label="BCD"> °</div>
+          <div class="rule">(1) D가 원 위에 서려면 ∠ADC = <input autocomplete="off" type="number" data-answer="68" aria-label="ADC"> °</div>
+          <div class="rule">(2) 이때 ∠BCD = <input autocomplete="off" type="number" data-answer="84" aria-label="BCD"> °</div>
           <div class="rule">(3) 돌을 세운 뒤 다시 재 보니 ∠ADC = 72°였다.<br>D를 원의
-            <select data-answer="out" aria-label="옮길 방향"><option value="">선택</option><option value="in">안쪽(중심 쪽)</option><option value="out">바깥쪽</option></select>으로 옮겨야 한다.</div>
+            <select autocomplete="off" data-answer="out" aria-label="옮길 방향"><option value="">선택</option><option value="in">안쪽(중심 쪽)</option><option value="out">바깥쪽</option></select>으로 옮겨야 한다.</div>
           <div class="tools"><button class="btn" data-check>확인</button></div>
           <p class="fb" aria-live="polite"></p>
         </div>
@@ -768,7 +768,7 @@ body.locked{overflow:hidden}
       <p class="q">대각의 합이 180°인 사각형은 항상 원에 내접할까?<br>180°가 아니면 어떻게 될까?</p>
     </div>
     <p>오늘 탐구한 내용을 떠올리며 핵심 질문에 대한 나의 답을 한두 문장으로 정리해 보세요.<br>‘D가 원의 내부, 원 위, 원의 외부에 있을 때’를 넣어 쓰면 더 좋습니다.</p>
-    <div class="qa"><label for="todayA">핵심 질문에 대한 나의 답</label><textarea id="todayA" placeholder="대각의 합이 180°이면 …"></textarea></div>
+    <div class="qa"><label for="todayA">핵심 질문에 대한 나의 답</label><textarea autocomplete="off" id="todayA" placeholder="대각의 합이 180°이면 …"></textarea></div>
     <details><summary>예시 답 보기</summary><div class="sol"><p>대각의 합이 180°인 사각형은 항상 원에 내접한다.<br>세 점 A, B, C를 지나는 원에서 ∠B + ∠D가 180°보다 크면 D는 원의 내부, 작으면 원의 외부에 있다.</p></div></details>
   </div>
 
@@ -782,8 +782,8 @@ body.locked{overflow:hidden}
       <button type="button">~가 아닌 다른 방법은 없을까?</button>
       <button type="button">사각형 말고 ~에서도 그럴까?</button>
     </div>
-    <div class="qa"><label for="myQ">나의 탐구 질문</label><textarea id="myQ" placeholder="예) 오각형도 각도만으로 원에 내접하는지 알 수 있을까?"></textarea></div>
-    <div class="qa"><label for="myA">나의 답 (모르면 예상이나 확인 방법을 써도 됩니다)</label><textarea id="myA" placeholder="답, 이유, 확인해 볼 방법을 적어 보세요."></textarea></div>
+    <div class="qa"><label for="myQ">나의 탐구 질문</label><textarea autocomplete="off" id="myQ" placeholder="예) 오각형도 각도만으로 원에 내접하는지 알 수 있을까?"></textarea></div>
+    <div class="qa"><label for="myA">나의 답 (모르면 예상이나 확인 방법을 써도 됩니다)</label><textarea autocomplete="off" id="myA" placeholder="답, 이유, 확인해 볼 방법을 적어 보세요."></textarea></div>
   </div>
 
   <details data-s="3" class="panel exwrap">
@@ -839,9 +839,9 @@ body.locked{overflow:hidden}
       <h3>먼저 추측하기</h3>
       <p>원에 딱 맞추려면 각 사각형은 어떤 모양이 되어야 할까요? 추측해 봅시다.</p>
       <div class="rule guess">
-        <label for="gTrap">사다리꼴 →</label><input type="text" id="gTrap" placeholder="어떤 사각형?">
-        <label for="gPara">평행사변형 →</label><input type="text" id="gPara" placeholder="어떤 사각형?">
-        <label for="gRhom">마름모 →</label><input type="text" id="gRhom" placeholder="어떤 사각형?">
+        <label for="gTrap">사다리꼴 →</label><input autocomplete="off" type="text" id="gTrap" placeholder="어떤 사각형?">
+        <label for="gPara">평행사변형 →</label><input autocomplete="off" type="text" id="gPara" placeholder="어떤 사각형?">
+        <label for="gRhom">마름모 →</label><input autocomplete="off" type="text" id="gRhom" placeholder="어떤 사각형?">
       </div>
       <p class="muted" style="font-size:14px">다음 장의 조작판에서 내 추측이 맞는지 확인해 봅시다.</p>
     </div></div>
@@ -856,7 +856,7 @@ body.locked{overflow:hidden}
       </div>
       <svg id="shapeSvg" viewBox="-200 -170 400 340" role="img" aria-label="세 꼭짓점 A, B, C를 지나는 원과 꼭짓점 D"></svg>
       <label for="shapeRange" id="rangeLbl" class="muted" style="font-size:14px">윗변 위치</label>
-      <input type="range" id="shapeRange" min="-60" max="60" value="35">
+      <input autocomplete="off" type="range" id="shapeRange" min="-60" max="60" value="35">
     </div>
     <div class="readout">
       <p class="muted" style="font-size:14px">점선 원은 A, B, C를 지나는 원입니다.<br>슬라이더를 움직여 D도 원 위에 오는 순간을 찾아보세요.</p>
@@ -880,10 +880,10 @@ body.locked{overflow:hidden}
       <h3>사다리꼴 ABCD (AD // BC)</h3>
       <p class="muted" style="font-size:14px">‘//’는 두 직선이 평행하다는 기호입니다.<br>AD // BC는 “AD와 BC가 평행하다”라고 읽습니다.</p>
       <div class="reason">
-        <p>① AD와 BC가 평행하므로 ∠A + ∠B = <select data-answer="180" aria-label="평행선 사이 두 각의 합"><option value="">?</option><option>90</option><option>180</option></select>°<br><span class="muted" style="font-size:14px">힌트: 평행선 사이에서 같은 쪽에 붙은 두 각을 더하면 180°입니다.<br>조작판에서 확인해 보세요.</span></p>
+        <p>① AD와 BC가 평행하므로 ∠A + ∠B = <select autocomplete="off" data-answer="180" aria-label="평행선 사이 두 각의 합"><option value="">?</option><option>90</option><option>180</option></select>°<br><span class="muted" style="font-size:14px">힌트: 평행선 사이에서 같은 쪽에 붙은 두 각을 더하면 180°입니다.<br>조작판에서 확인해 보세요.</span></p>
         <p>② 원에 내접하므로 ∠A + ∠C = 180°</p>
-        <p>③ ①과 ② 모두 ∠A에 더해서 180°가 되므로 ∠B = <select data-answer="C" aria-label="같은 각"><option value="">?</option><option value="A">∠A</option><option value="C">∠C</option><option value="D">∠D</option></select></p>
-        <p>→ 아랫변 양 끝의 두 각(밑각)이 같으므로 양옆 변의 길이가 같은 <select data-answer="iso" aria-label="결론 사다리꼴"><option value="">?</option><option value="iso">등변사다리꼴</option><option value="rect">직사각형</option><option value="para">평행사변형</option></select></p>
+        <p>③ ①과 ② 모두 ∠A에 더해서 180°가 되므로 ∠B = <select autocomplete="off" data-answer="C" aria-label="같은 각"><option value="">?</option><option value="A">∠A</option><option value="C">∠C</option><option value="D">∠D</option></select></p>
+        <p>→ 아랫변 양 끝의 두 각(밑각)이 같으므로 양옆 변의 길이가 같은 <select autocomplete="off" data-answer="iso" aria-label="결론 사다리꼴"><option value="">?</option><option value="iso">등변사다리꼴</option><option value="rect">직사각형</option><option value="para">평행사변형</option></select></p>
       </div>
       <div class="tools"><button class="btn" data-check>확인</button></div>
       <p class="fb" aria-live="polite"></p>
@@ -895,8 +895,8 @@ body.locked{overflow:hidden}
       <div class="reason">
         <p>① 평행사변형은 마주 보는 두 각의 크기가 같으므로 ∠A = ∠C</p>
         <p>② 원에 내접하므로 ∠A + ∠C = 180°</p>
-        <p>③ 따라서 ∠A = ∠C = <input type="number" data-answer="90" aria-label="각의 크기">°</p>
-        <p>→ 네 각이 모두 직각이므로 <select data-answer="rect" aria-label="결론 평행사변형"><option value="">?</option><option value="rect">직사각형</option><option value="rhom">마름모</option><option value="iso">등변사다리꼴</option></select></p>
+        <p>③ 따라서 ∠A = ∠C = <input autocomplete="off" type="number" data-answer="90" aria-label="각의 크기">°</p>
+        <p>→ 네 각이 모두 직각이므로 <select autocomplete="off" data-answer="rect" aria-label="결론 평행사변형"><option value="">?</option><option value="rect">직사각형</option><option value="rhom">마름모</option><option value="iso">등변사다리꼴</option></select></p>
       </div>
       <div class="tools"><button class="btn" data-check>확인</button></div>
       <p class="fb" aria-live="polite"></p>
@@ -906,9 +906,9 @@ body.locked{overflow:hidden}
       <span class="tag">심화 문제 3</span>
       <h3>마름모 ABCD</h3>
       <div class="reason">
-        <p>① 마름모도 평행사변형의 한 종류이므로, 원에 내접하면 심화 문제 2처럼 <select data-answer="rect" aria-label="마름모 1"><option value="">?</option><option value="rect">직사각형</option><option value="iso">등변사다리꼴</option></select>이 된다.</p>
+        <p>① 마름모도 평행사변형의 한 종류이므로, 원에 내접하면 심화 문제 2처럼 <select autocomplete="off" data-answer="rect" aria-label="마름모 1"><option value="">?</option><option value="rect">직사각형</option><option value="iso">등변사다리꼴</option></select>이 된다.</p>
         <p>② 마름모는 네 변의 길이가 같다.</p>
-        <p>→ 네 각이 직각이고 네 변이 같으므로 <select data-answer="sq" aria-label="결론 마름모"><option value="">?</option><option value="sq">정사각형</option><option value="rect">직사각형</option><option value="rhom">마름모 그대로</option></select></p>
+        <p>→ 네 각이 직각이고 네 변이 같으므로 <select autocomplete="off" data-answer="sq" aria-label="결론 마름모"><option value="">?</option><option value="sq">정사각형</option><option value="rect">직사각형</option><option value="rhom">마름모 그대로</option></select></p>
       </div>
       <div class="tools"><button class="btn" data-check>확인</button></div>
       <p class="fb" aria-live="polite"></p>
@@ -929,9 +929,9 @@ body.locked{overflow:hidden}
     <h3>심화 과제 정리</h3>
     <p class="muted" style="font-size:14px">원에 내접하면 어떤 사각형이 되는지 빈칸에 써 보세요.</p>
     <div class="maps">
-      <div class="map"><span>사다리꼴</span><span class="arrow">원에 내접 →</span><input type="text" id="mapTrap" class="mapin" data-answer="등변사다리꼴" aria-label="원에 내접하는 사다리꼴"></div>
-      <div class="map"><span>평행사변형</span><span class="arrow">원에 내접 →</span><input type="text" id="mapPara" class="mapin" data-answer="직사각형" aria-label="원에 내접하는 평행사변형"></div>
-      <div class="map"><span>마름모</span><span class="arrow">원에 내접 →</span><input type="text" id="mapRhom" class="mapin" data-answer="정사각형" aria-label="원에 내접하는 마름모"></div>
+      <div class="map"><span>사다리꼴</span><span class="arrow">원에 내접 →</span><input autocomplete="off" type="text" id="mapTrap" class="mapin" data-answer="등변사다리꼴" aria-label="원에 내접하는 사다리꼴"></div>
+      <div class="map"><span>평행사변형</span><span class="arrow">원에 내접 →</span><input autocomplete="off" type="text" id="mapPara" class="mapin" data-answer="직사각형" aria-label="원에 내접하는 평행사변형"></div>
+      <div class="map"><span>마름모</span><span class="arrow">원에 내접 →</span><input autocomplete="off" type="text" id="mapRhom" class="mapin" data-answer="정사각형" aria-label="원에 내접하는 마름모"></div>
     </div>
     <div class="tools"><button class="btn" data-check>확인</button></div>
     <p class="fb" aria-live="polite"></p>
@@ -1109,8 +1109,8 @@ function renderRows(){
   if(!rows.length){body.innerHTML='<tr class="empty"><td colspan="9">D를 원 안, 원 위, 원 밖에 두고 각각 두 번 이상 기록해 보세요.</td></tr>';return}
   const cls=v=>v===true?"ok":v===false?"no":"";
   body.innerHTML=rows.map((r,i)=>`<tr><td>${i+1}</td><td class="k"><span class="pill ${r.st}">${{in:"원의 내부",on:"원 위",out:"원의 외부"}[r.st]}</span></td><td>${r.iv.A}°</td><td>${r.iv.B}°</td><td>${r.iv.C}°</td><td>${r.iv.D}°</td>`+
-    `<td><input type="number" inputmode="numeric" class="${cls(r.okAC)}" data-i="${i}" data-k="inAC" value="${r.inAC??""}" aria-label="${i+1}번 각 A 더하기 각 C"></td>`+
-    `<td><input type="number" inputmode="numeric" class="${cls(r.okBD)}" data-i="${i}" data-k="inBD" value="${r.inBD??""}" aria-label="${i+1}번 각 B 더하기 각 D"></td>`+
+    `<td><input autocomplete="off" type="number" inputmode="numeric" class="${cls(r.okAC)}" data-i="${i}" data-k="inAC" value="${r.inAC??""}" aria-label="${i+1}번 각 A 더하기 각 C"></td>`+
+    `<td><input autocomplete="off" type="number" inputmode="numeric" class="${cls(r.okBD)}" data-i="${i}" data-k="inBD" value="${r.inBD??""}" aria-label="${i+1}번 각 B 더하기 각 D"></td>`+
     `<td class="k">${r.okAC===undefined?"–":r.okAC&&r.okBD?'<span class="res ok">○ 맞음</span>':'<span class="res no">× 다시</span>'}</td></tr>`).join("");
 }
 body.addEventListener("input",e=>{const t=e.target;if(t.dataset.k){const r=rows[+t.dataset.i];r[t.dataset.k]=t.value;r.okAC=r.okBD=undefined;t.classList.remove("ok","no")}});
@@ -1216,8 +1216,7 @@ setShape("trap");
 /* ---------- question builder ---------- */
 const myQ=document.getElementById("myQ"),myA=document.getElementById("myA");
 document.querySelectorAll("#stems button").forEach(b=>b.addEventListener("click",()=>{myQ.value=(myQ.value?myQ.value+"\n":"")+b.textContent;myQ.focus()}));
-[myQ,myA,document.getElementById("todayA")].forEach(t=>{try{const v=localStorage.getItem("cyc-"+t.id);if(v)t.value=v}catch(e){}
-  t.addEventListener("input",()=>{try{localStorage.setItem("cyc-"+t.id,t.value)}catch(e){}})});
+
 /* ---------- glossary figures ---------- */
 function wedge(V,P,N,r,cls,s){el("path",{d:arcD(V,P,N,r).replace(/^M/,`M${V.x} ${V.y}L`)+"Z",class:cls},s)}
 function names(s,list,cen,L){list.forEach(([p,n])=>{const o=nrm(sub(p,cen));txt(s,p.x+o.x*(L||13),p.y+o.y*(L||13),n,null,{class:"s-name","font-size":14})})}
@@ -1329,16 +1328,35 @@ render(false);
 const entry=document.getElementById("entry"),form=document.getElementById("entryForm");
 const eId=document.getElementById("eId"),eName=document.getElementById("eName"),eFb=document.getElementById("eFb");
 let who={id:"",name:""};
-try{const s=JSON.parse(localStorage.getItem("cyclic-student")||"{}");eId.value=s.id||"";eName.value=s.name||""}catch(e){}
+try{localStorage.removeItem("cyclic-student");["myQ","myA","todayA"].forEach(k=>localStorage.removeItem("cyc-"+k))}catch(e){}
+const fields=()=>[...document.querySelectorAll("section.stage input, section.stage select, section.stage textarea")]
+  .filter(el=>!(el.type==="checkbox"||el.type==="range"||el.type==="hidden"||el.closest("#recBody")));
+function resetAll(){
+  fields().forEach(el=>{if(el.tagName==="SELECT")el.selectedIndex=0;else el.value="";el.classList.remove("ok","no")});
+  document.querySelectorAll("section.stage .fb").forEach(f=>{f.textContent="";f.className="fb"});
+}
+function save(){
+  if(!who.id)return;
+  try{localStorage.setItem("cyc-ans-"+who.id,JSON.stringify(fields().map(el=>el.value)))}catch(e){}
+}
+function restore(id){
+  try{const a=JSON.parse(localStorage.getItem("cyc-ans-"+id)||"null");if(!a)return;
+    const fs=fields();if(a.length!==fs.length)return;
+    fs.forEach((el,i)=>{el.value=a[i]??""})}catch(e){}
+}
+document.addEventListener("input",e=>{if(e.target.closest&&e.target.closest("section.stage"))save()});
+document.addEventListener("change",e=>{if(e.target.closest&&e.target.closest("section.stage"))save()});
+window.addEventListener("pageshow",e=>{if(e.persisted&&!who.id){resetAll()}});
 document.body.classList.add("locked");
-setTimeout(()=>(eId.value?eName:eId).focus(),50);
+resetAll();
+setTimeout(()=>eId.focus(),50);
 form.addEventListener("submit",ev=>{
   ev.preventDefault();
   const id=eId.value.replace(/\s/g,""),name=eName.value.trim();
   if(!/^\d{4,6}$/.test(id)){eFb.textContent="학번을 숫자로 써 주세요. (예: 30312)";eId.focus();return}
   if(!name){eFb.textContent="이름을 써 주세요.";eName.focus();return}
   who={id,name};
-  try{localStorage.setItem("cyclic-student",JSON.stringify(who))}catch(e){}
+  resetAll();restore(id);
   entry.hidden=true;document.body.classList.remove("locked");
   const tag=document.getElementById("whoTag");if(tag)tag.firstChild.textContent=`${id} ${name}`;
   const sb=document.querySelector('[data-mode="slides"]');           // 학생은 한 장씩 보기로 시작
