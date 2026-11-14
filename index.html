@@ -1260,7 +1260,7 @@ function render(scroll){
   header.classList.toggle("off",!all&&!sl.cover);
   secs.forEach(sec=>{const show=all||sl.sec===sec;sec.classList.toggle("off",!show);
     sec.querySelectorAll("[data-s]").forEach(e=>e.classList.toggle("off",!all&&+e.dataset.s!==sl.v))});
-  bar.hidden=all;window.__onSlide&&window.__onSlide(all,sl);document.body.classList.toggle("slides",!all);
+  bar.hidden=all;window.__onSlide&&window.__onSlide(all,sl,cur,slides.length);document.body.classList.toggle("slides",!all);
   document.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.mode===mode?"true":"false"));
   navLinks.forEach(a=>a.classList.toggle("cur",!all&&!sl.cover&&a.getAttribute("href")==="#"+(sl.sec.dataset.nav||sl.sec.id)));
   if(!all){
@@ -1342,9 +1342,9 @@ tag.querySelector("button").onclick=()=>{entry.hidden=false;document.body.classL
 bar.prepend(tag);
 
 const isField=el=>!(el.type==="checkbox"||el.type==="range"||el.type==="hidden"||el.closest("#entry"));
-let curSlide=null;
-window.__onSlide=(all,sl)=>{
-  curSlide=sl;
+let curSlide=null,curPage=0,totPage=0;
+window.__onSlide=(all,sl,i,n)=>{
+  curSlide=sl;curPage=i+1;totPage=n;
   let has=false;
   if(!all&&!sl.cover){
     sl.sec.querySelectorAll(`[data-s="${sl.v}"]`).forEach(b=>{
@@ -1388,7 +1388,7 @@ function collect(){
     }
     ans[key]=v;
   });
-  d["마지막 제출 화면"]=sl&&!sl.cover?`${sl.sec.dataset.stage} ${sl.v}`:"";
+  d["마지막 제출 화면"]=curPage?`${curPage}쪽 / ${totPage}`:"";
   d["정답 수(확인 문항)"]=`${ok} / ${tot}`;
   Object.assign(d,ans);
   return d;
