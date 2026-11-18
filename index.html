@@ -370,6 +370,9 @@ body.slides header.top{padding-block:12vh 40px}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 html{scroll-behavior:smooth}
+.sg .big select{font-size:18px;font-weight:700}
+.theorem .t select{font-size:inherit;font-weight:700}
+.proof li select{margin:2px 0}
 
 #entry{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:var(--bg);
   background-image:radial-gradient(circle at 50% 38%,var(--ochre-soft) 0,transparent 60%)}
@@ -386,6 +389,7 @@ html{scroll-behavior:smooth}
 #entry .efb{margin:0;min-height:1.2em;color:var(--bad);font-size:14px}
 #entry .ehint{margin:0;color:var(--muted);font-size:12px}
 body.locked{overflow:hidden}
+body:not(.teacher) details.key{display:none!important}
 .slidebar .who{position:absolute;left:16px;font-size:12px;color:var(--muted)}
 .slidebar .who button{border:0;background:none;color:var(--accent);text-decoration:underline;cursor:pointer;font:inherit;padding:0 0 0 4px}
 .slidebar .btn.submitS{background:var(--ochre);border-color:var(--ochre);color:#fff}
@@ -671,32 +675,36 @@ body.followLock #prevS,body.followLock #nextS{opacity:.35;pointer-events:none}
           <h3 style="font-size:17px">D가 원의 내부에 있을 때</h3>
           <ol id="olIn">
             <li>AD를 D 쪽으로 길게 늘여서 원과 만나는 점을 E라 한다.</li>
-            <li hidden>삼각형 DEC에서 ∠ADC는 외각이다.<br>그래서 ∠ADC = ∠DEC + ∠DCE</li>
-            <li hidden>두 각을 더한 것이니 ∠ADC는 ∠DEC보다 크다.<br>즉 ∠ADC <b>&gt;</b> ∠AEC</li>
-            <li hidden>양쪽에 ∠B를 더하면 ∠B + ∠ADC &gt; ∠B + ∠AEC = 180°</li>
+            <li hidden>삼각형 DEC에서 ∠ADC는 <select autocomplete="off" data-answer="외각" aria-label="왜 그럴까 내부 ② ∠ADC는 ○각"><option value="">?</option><option value="외각">외각</option><option value="내각">내각</option><option value="대각">대각</option></select>이므로<br>∠ADC = ∠DEC + <select autocomplete="off" data-answer="∠DCE" aria-label="왜 그럴까 내부 ② ∠ADC = ∠DEC + ?"><option value="">?</option><option value="∠DCE">∠DCE</option><option value="∠DEC">∠DEC</option><option value="∠ADC">∠ADC</option></select></li>
+            <li hidden>따라서 ∠ADC <select autocomplete="off" data-answer="&gt;" aria-label="왜 그럴까 내부 ③ ∠ADC ○ ∠AEC"><option value="">?</option><option value="&gt;">&gt;</option><option value="=">=</option><option value="&lt;">&lt;</option></select> ∠DEC = ∠AEC</li>
+            <li hidden>양쪽에 ∠B를 더하면<br>∠B + ∠ADC <select autocomplete="off" data-answer="&gt;" aria-label="왜 그럴까 내부 ④ 부등호"><option value="">?</option><option value="&gt;">&gt;</option><option value="=">=</option><option value="&lt;">&lt;</option></select> ∠B + ∠AEC = <select autocomplete="off" data-answer="180" aria-label="왜 그럴까 내부 ④ ∠B+∠AEC"><option value="">?</option><option value="90">90</option><option value="180">180</option><option value="360">360</option></select>°</li>
           </ol>
-          <button class="btn" data-next="olIn">다음 줄 보기</button>
+          <div class="tools"><button class="btn" data-next="olIn">다음 줄 보기</button><button class="btn" data-check>확인</button></div>
+          <p class="fb" aria-live="polite"></p>
         </div>
         <div class="proof">
           <svg id="pfOut" viewBox="-130 -125 260 270" role="img" aria-label="D가 원 외부일 때 보조점 E"></svg>
           <h3 style="font-size:17px">D가 원의 외부에 있을 때 <span class="muted" style="font-size:14px">(스스로 해 보기)</span></h3>
           <ol id="olOut">
             <li>선분 AD가 원과 만나는 점을 E라 한다.</li>
-            <li hidden>삼각형 EDC에서 ∠AEC는 외각이다.<br>그래서 ∠AEC = ∠EDC + ∠ECD</li>
-            <li hidden>두 각을 더한 것이니 ∠AEC는 ∠EDC(= ∠ADC)보다 크다.<br>즉 ∠ADC <b>&lt;</b> ∠AEC</li>
-            <li hidden>양쪽에 ∠B를 더하면 ∠B + ∠ADC &lt; ∠B + ∠AEC = 180°</li>
+            <li hidden>삼각형 EDC에서 ∠AEC는 <select autocomplete="off" data-answer="외각" aria-label="왜 그럴까 외부 ② ∠AEC는 ○각"><option value="">?</option><option value="외각">외각</option><option value="내각">내각</option><option value="대각">대각</option></select>이므로<br>∠AEC = ∠EDC + <select autocomplete="off" data-answer="∠ECD" aria-label="왜 그럴까 외부 ② ∠AEC = ∠EDC + ?"><option value="">?</option><option value="∠ECD">∠ECD</option><option value="∠EDC">∠EDC</option><option value="∠AEC">∠AEC</option></select></li>
+            <li hidden>따라서 ∠ADC = ∠EDC <select autocomplete="off" data-answer="&lt;" aria-label="왜 그럴까 외부 ③ ∠EDC ○ ∠AEC"><option value="">?</option><option value="&gt;">&gt;</option><option value="=">=</option><option value="&lt;">&lt;</option></select> ∠AEC</li>
+            <li hidden>양쪽에 ∠B를 더하면<br>∠B + ∠ADC <select autocomplete="off" data-answer="&lt;" aria-label="왜 그럴까 외부 ④ 부등호"><option value="">?</option><option value="&gt;">&gt;</option><option value="=">=</option><option value="&lt;">&lt;</option></select> ∠B + ∠AEC = <select autocomplete="off" data-answer="180" aria-label="왜 그럴까 외부 ④ ∠B+∠AEC"><option value="">?</option><option value="90">90</option><option value="180">180</option><option value="360">360</option></select>°</li>
           </ol>
-          <button class="btn" data-next="olOut">다음 줄 보기</button>
+          <div class="tools"><button class="btn" data-next="olOut">다음 줄 보기</button><button class="btn" data-check>확인</button></div>
+          <p class="fb" aria-live="polite"></p>
         </div>
       </div>
-      <p>그러므로 ∠B + ∠D = 180°가 되는 것은 D가 <b>원 위에 있을 때뿐</b>입니다.</p>
+      <div class="ckscope"><p>그러므로 ∠B + ∠D = 180°가 되는 것은 D가 <select autocomplete="off" data-answer="on" aria-label="왜 그럴까 결론: D의 위치"><option value="">?</option><option value="in">원의 내부</option><option value="on">원 위</option><option value="out">원의 외부</option></select>에 있을 때뿐입니다.</p>
+      <div class="tools"><button class="btn" data-check>확인</button></div><p class="fb" aria-live="polite"></p></div>
     </div></div>
   </div>
 
   <div data-s="5" class="theorem">
     <span class="eyebrow">오늘 찾은 성질</span>
-    <p class="t">한 쌍의 대각의 크기의 합이 180°인 사각형은 원에 내접한다.</p>
-    <p class="iff">지난 시간: 원에 내접한다 → 대각의 합이 180°<br>오늘: 대각의 합이 180° → 원에 내접한다</p>
+    <div class="ckscope"><p class="t">한 쌍의 대각의 크기의 합이 <select autocomplete="off" data-answer="180" aria-label="오늘 찾은 성질: 대각의 합"><option value="">?</option><option value="90">90</option><option value="180">180</option><option value="360">360</option></select>°인 사각형은 원에 <select autocomplete="off" data-answer="내접한다" aria-label="오늘 찾은 성질: 원에 ○"><option value="">?</option><option value="내접한다">내접한다</option><option value="외접한다">외접한다</option></select>.</p>
+    <div class="tools"><button class="btn" data-check>확인</button></div><p class="fb" aria-live="polite"></p></div>
+    <p class="iff">지난 시간: 원에 내접한다 → 대각의 합이 180°<br>오늘: 그 거꾸로 방향(위의 성질)도 맞다는 것을 확인했습니다.</p>
     <p class="muted">두 방향이 모두 맞습니다.<br>그래서 원의 중심을 몰라도 각도만 재면 네 점이 한 원 위에 있는지 알 수 있습니다.</p>
   </div>
 </section>
@@ -726,7 +734,7 @@ body.followLock #prevS,body.followLock #nextS{opacity:.35;pointer-events:none}
           <div class="tools"><button class="btn" data-check>확인</button></div>
           <p class="fb" aria-live="polite"></p>
         </div>
-        <details><summary>풀이 보기</summary><div class="sol">
+        <details class="key"><summary>풀이 보기</summary><div class="sol">
           <p>∠B와 각 후보의 각을 더해 180°와 비교합니다.</p>
           <p class="mono">104 + 76 = 180 → D₁은 원 위 (진짜 기둥 자리)</p>
           <p class="mono">104 + 83 = 187 &gt; 180 → D₂는 원의 내부</p>
@@ -749,7 +757,7 @@ body.followLock #prevS,body.followLock #nextS{opacity:.35;pointer-events:none}
           <div class="tools"><button class="btn" data-check>확인</button></div>
           <p class="fb" aria-live="polite"></p>
         </div>
-        <details><summary>풀이 보기</summary><div class="sol">
+        <details class="key"><summary>풀이 보기</summary><div class="sol">
           <p>(1) 원에 내접하려면 ∠B + ∠D = 180°이므로 ∠ADC = 180° − 112° = 68°</p>
           <p>(2) ∠A + ∠C = 180°이므로 ∠BCD = 180° − 96° = 84°</p>
           <p>(3) 112° + 72° = 184° &gt; 180°이므로 D는 지금 원의 내부에 있다.<br>바깥쪽으로 옮겨야 한다.</p>
@@ -774,13 +782,14 @@ body.followLock #prevS,body.followLock #nextS{opacity:.35;pointer-events:none}
     <h2>복원 보고서 쓰기</h2>
   </div>
 
-  <div data-s="1" class="panel" style="display:grid;gap:14px">
+  <div data-s="1" class="panel ckscope" style="display:grid;gap:14px">
     <h3>오늘 알아낸 것</h3>
     <div class="summary-grid">
-      <div class="sg in"><span>D가 원의 내부</span><span class="big">∠B+∠D &gt; 180°</span></div>
-      <div class="sg on"><span>D가 원 위 (내접)</span><span class="big">∠B+∠D = 180°</span></div>
-      <div class="sg out"><span>D가 원의 외부</span><span class="big">∠B+∠D &lt; 180°</span></div>
+      <div class="sg in"><span>D가 원의 내부</span><span class="big">∠B+∠D <select autocomplete="off" data-answer="&gt;" aria-label="오늘 알아낸 것: D가 원의 내부"><option value="">?</option><option value="&gt;">&gt;</option><option value="=">=</option><option value="&lt;">&lt;</option></select> 180°</span></div>
+      <div class="sg on"><span>D가 원 위 (내접)</span><span class="big">∠B+∠D <select autocomplete="off" data-answer="=" aria-label="오늘 알아낸 것: D가 원 위"><option value="">?</option><option value="&gt;">&gt;</option><option value="=">=</option><option value="&lt;">&lt;</option></select> 180°</span></div>
+      <div class="sg out"><span>D가 원의 외부</span><span class="big">∠B+∠D <select autocomplete="off" data-answer="&lt;" aria-label="오늘 알아낸 것: D가 원의 외부"><option value="">?</option><option value="&gt;">&gt;</option><option value="=">=</option><option value="&lt;">&lt;</option></select> 180°</span></div>
     </div>
+    <div class="tools"><button class="btn" data-check>확인</button></div><p class="fb" aria-live="polite"></p>
   </div>
 
   <div data-s="2" class="panel" style="display:grid;gap:14px">
@@ -791,7 +800,7 @@ body.followLock #prevS,body.followLock #nextS{opacity:.35;pointer-events:none}
     </div>
     <p>오늘 탐구한 내용을 떠올리며 핵심 질문에 대한 나의 답을 한두 문장으로 정리해 보세요.<br>‘D가 원의 내부, 원 위, 원의 외부에 있을 때’를 넣어 쓰면 더 좋습니다.</p>
     <div class="qa"><label for="todayA">핵심 질문에 대한 나의 답</label><textarea autocomplete="off" id="todayA" placeholder="대각의 합이 180°이면 …"></textarea></div>
-    <details><summary>예시 답 보기</summary><div class="sol"><p>대각의 합이 180°인 사각형은 항상 원에 내접한다.<br>세 점 A, B, C를 지나는 원에서 ∠B + ∠D가 180°보다 크면 D는 원의 내부, 작으면 원의 외부에 있다.</p></div></details>
+    <details class="key"><summary>예시 답 보기</summary><div class="sol"><p>대각의 합이 180°인 사각형은 항상 원에 내접한다.<br>세 점 A, B, C를 지나는 원에서 ∠B + ∠D가 180°보다 크면 D는 원의 내부, 작으면 원의 외부에 있다.</p></div></details>
   </div>
 
   <div data-s="3" class="panel" style="display:grid;gap:14px">
@@ -934,7 +943,7 @@ body.followLock #prevS,body.followLock #nextS{opacity:.35;pointer-events:none}
     <span class="tag">도전 문제</span>
     <h3 style="margin:4px 0 8px">거꾸로 생각하기</h3>
     <p>등변사다리꼴, 직사각형, 정사각형은 <b>항상</b> 원에 내접할까요?<br>오늘 배운 성질로 설명해 보세요.</p>
-    <details><summary>예시 답안</summary><div class="sol">
+    <details class="key"><summary>예시 답안</summary><div class="sol">
       <p>등변사다리꼴: 밑각이 같으므로 ∠B = ∠C이다.<br>평행선 사이 같은 쪽 두 각이라서 ∠A + ∠B = 180°이다.<br>∠B 대신 ∠C를 넣으면 ∠A + ∠C = 180°이므로 항상 내접한다.</p>
       <p>직사각형·정사각형: 네 각이 모두 90°라서 마주 보는 두 각의 합이 90° + 90° = 180°이다.<br>항상 내접한다.</p>
     </div></details>
@@ -1050,8 +1059,8 @@ document.querySelectorAll("input[data-photo]").forEach(inp=>{
 function norm(v){return String(v).replace(/\s+/g,"")}
 document.querySelectorAll("[data-check]").forEach(btn=>{
   btn.addEventListener("click",()=>{
-    const scope=btn.closest(".body, .txt, .shape-card");
-    const items=scope.querySelectorAll("[data-answer]");let ok=0;
+    const scope=btn.closest(".ckscope, .proof, .body, .txt, .shape-card, .panel");
+    const items=[...scope.querySelectorAll("[data-answer]")].filter(it=>!it.closest("[hidden]"));let ok=0;
     items.forEach(it=>{const good=norm(it.value)===norm(it.dataset.answer);it.classList.toggle("ok",good);it.classList.toggle("no",!good);if(good)ok++});
     const fb=scope.querySelector(".fb");
     if(fb){const all=ok===items.length;fb.className="fb "+(all?"ok":"no");fb.textContent=all?"모두 맞았습니다.":`${items.length}개 중 ${ok}개 맞았습니다. 빨간 칸을 다시 생각해 보세요.`}
